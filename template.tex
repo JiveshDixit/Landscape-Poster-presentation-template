@@ -1,0 +1,313 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% AGU 2025 Landscape Poster Template
+% LaTeX Template
+%
+% This template is adapted for the American Geophysical Union (AGU) 2025 Fall Meeting.
+%
+% Original a0poster class created by:
+% Gerlinde Kettl and Matthias Weiser (tex@kettl.de)
+%
+% Modified and Adapted for AGU 2025 by:
+% Jivesh Dixit (jiveshdixit@gmail.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[a0,landscape]{a0poster}
+% control margins here
+\usepackage{geometry}
+ \geometry{
+ a0paper,
+ landscape,
+ left=5cm,
+ top=4.5cm,
+ right=5cm,
+ bottom=0cm
+ }
+\addtolength{\textwidth}{2.5cm} % width of text can be adjusted if margins above are adjusted
+\usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+\usepackage{textcomp}
+\usepackage{stfloats}
+\usepackage{url}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{booktabs} 
+\usepackage[table]{xcolor}
+\usepackage{colortbl}
+\usepackage{orcidlink}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{multicol} % This is so we can have multiple columns of text side-by-side
+\columnsep=3em % This is the amount of white space between the columns in the poster
+\columnseprule=0pt % This is the thickness of the black line between the columns in the poster
+
+% UZH colours (Preserved from original theme)
+\usepackage[svgnames]{xcolor}
+\definecolor{uzhblau100}{RGB}{0, 40, 165}
+\definecolor{uzhblau80}{RGB}{51,83,183}
+\definecolor{uzhockerrot100}{RGB}{220, 96, 39}
+\definecolor{uzhockerrot80}{RGB}{227, 128, 82}
+\definecolor{uzhflaschengruen100}{RGB}{42, 127, 98}
+\definecolor{uzhflaschengruen80}{RGB}{86, 157, 133}
+\definecolor{conclusion}{RGB}{204,212,237} % the conclusion box colour
+
+\usepackage{ifthen} % needed to stop horizontal line above 'Conclusions' section
+\usepackage{graphicx} % Required for including images
+\graphicspath{{figures/}} % Location of the graphics files
+\usepackage{mwe,tikz}\usepackage[percent]{overpic} % overlay your photo over the background
+\usepackage{booktabs} % Top and bottom rules for table
+\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+\usepackage{amsfonts, amsmath, amsthm, amssymb} % For math fonts, symbols and environments
+\usepackage{wrapfig} % Allows wrapping text around tables and figures
+\usepackage{stfloats}
+\usepackage{fontspec} % custom fonts
+\usepackage[skins,breakable]{tcolorbox}
+
+% Font Configuration
+\defaultfontfeatures[Palatino]
+{
+    Extension = .ttf,
+    UprightFont = font/LT_41167,
+    BoldFont = font/LT_41169,
+    ItalicFont  = font/LT_41168,
+    BoldItalicFont = font/LT_41170,
+}
+\defaultfontfeatures[TheSans]
+{
+    Extension = .otf,
+    UprightFont = font/TheSans-LP5Plain,
+    BoldFont = font/TheSans-LP7Bld,
+    ItalicFont  = font/TheSans-LP5PlainIT,
+    BoldItalicFont = font/TheSans-LP7BldIT,
+}
+\setmainfont{TheSans} % choose your font here
+
+\usepackage[onehalfspacing]{setspace} % remove for single spacing
+\usepackage{tcolorbox} % for the conclusions box
+\usepackage{blindtext} % for dummy text
+\usepackage[export]{adjustbox} % allow floating a graphic right
+\usepackage{titlesec} % customising section titles
+\usepackage{nameref} % package and command to get the name of the current section (for ifthen)
+\usepackage{needspace} % for \needspace command
+\usepackage{eso-pic}
+
+% Fix for A0 poster size in PDF (Essential for modern TeX engines)
+\pdfpagewidth=\paperwidth
+\pdfpageheight=\paperheight
+
+\makeatletter
+\setlength{\pdfpagewidth}{\paperwidth}
+\setlength{\pdfpageheight}{\paperheight}
+\makeatother
+
+\begin{document}
+
+% define how our section titles will look (with ruled line)
+\titleformat{\section}
+  {\needspace{0.6\baselineskip}\sectionrule\huge\bfseries}
+  {\color{uzhblau100}\thesection.}
+  {1em}
+  {\color{uzhblau100}}
+
+% draw horizontal line before section unless it is conclusions
+\makeatletter
+\newcommand{\sectionrule}{%
+ \ifthenelse{\equal{\@currentlabelname}{Conclusions}}
+  {}
+  {\vspace*{-\baselineskip}
+   \vrule height 1pt depth 1pt width \linewidth\vskip0.4pt
+   \bigskip}%
+}
+\makeatother
+
+
+%----------------------------------------------------------------------------------------
+%	POSTER HEADER 
+%----------------------------------------------------------------------------------------
+\noindent % Prevents indentation
+
+% --- BLOCK 1: Title & Authors (Reduced to 55% width to make room) ---
+\begin{minipage}[c]{0.55\linewidth}
+    \raggedright
+    % TITLE
+    {\fontsize{80pt}{95pt}\selectfont \color{uzhblau100}\textbf{AGU 2025 Poster Template: Title goes here}\par}
+    
+    \vspace{0.8cm} 
+    
+    % AUTHORS
+    {\huge \underline {\textbf{Jivesh Dixit\textsuperscript{1}}}, and Co-Author Name\textsuperscript{1} \hspace{1cm} (\LARGE \textsuperscript{1}CAS, IIT Delhi)}
+\end{minipage}%
+\hfill 
+% --- BLOCK 2: Personal Photo (New Column - 15% width) ---
+\begin{minipage}[c]{0.15\linewidth}
+    \centering
+    % OPTION A: Square/Rectangular Image
+    % \includegraphics[width=0.8\linewidth, valign=c]{example-image}
+    
+    % OPTION B: Circular Crop (Professional Look) - Requires TikZ
+    \begin{tikzpicture}
+        \node[circle, draw=uzhblau100, line width=2pt, inner sep=0pt, minimum size=8cm, path picture={
+            \node at (path picture bounding box.center) {
+                \includegraphics[width=8cm]{figures/Silhouette.png} % <--- PUT YOUR PHOTO FILENAME HERE
+            };
+        }] {};
+    \end{tikzpicture}
+\end{minipage}%
+\hfill
+% --- BLOCK 3: Logos (Reduced to 25% width) ---
+\begin{minipage}[c]{0.25\linewidth}
+    \raggedleft 
+    % Image 1
+    \includegraphics[width=0.45\linewidth, valign=c]{figures/agu25.jpg} 
+    \hspace{0.5cm} 
+    % Image 2
+    \includegraphics[width=0.50\linewidth, valign=c]{figures/IITD_logo.png}
+\end{minipage}
+
+\vspace{0cm} % Space before columns start
+
+
+%----------------------------------------------------------------------------------------
+%	POSTER BODY
+%----------------------------------------------------------------------------------------
+
+\begin{multicols}{4} % 4 Columns
+
+%----------------------------------------------------------------------------------------
+%	INTRODUCTION
+%----------------------------------------------------------------------------------------
+
+\section{Introduction}
+
+\large
+\blindtext[1] % Generates dummy Latin text
+
+This is an example citation \cite{Eyring2016Overview}. The project aims to improve existing methodologies by applying advanced algorithms \cite{Boer2016Decadal}.
+
+\section{Data and Methodology}
+\subsection {Data Acquisition}
+\blindtext[1]
+
+\subsection{Methodology Framework}
+The proposed architecture (Figure \ref{fig:method_diag}(a)) is illustrated in comparison to the baseline in Figure \ref{fig:method_diag}(b).
+
+\begin{center}\vspace{1cm}
+    % Placeholder image
+    \includegraphics[width=1.00\linewidth]{figures/licensed-image.jpg}
+    \captionof{figure}{(a) Diagram of the proposed architecture and (b) Flowchart of the algorithm implementation.}
+    \label{fig:method_diag} 
+\end{center}\vspace{1cm}
+
+We evaluate the model using standard metrics such as Root Mean Square Error (RMSE) and correlation coefficients.
+
+\begin{equation}
+\text{Correlation} = \frac{\sum (x - \bar{x})(y - \bar{y})}{\sqrt{\sum (x - \bar{x})^2 \sum (y - \bar{y})^2}}
+\label{eq:corr}
+\end{equation}
+
+\begin{equation}
+\text{RMSE} = \sqrt{\frac{1}{N} \sum_{i=1}^{N} (P_i - O_i)^2}
+\label{eq:rmse}
+\end{equation}
+
+\section{Results}
+
+The results indicate a significant improvement over the baseline models.
+
+\begin{center}\vspace{1cm}
+    \includegraphics[width=1.00\linewidth]{figures/Fig1.jpg}
+    \captionof{figure}{Comparison of model performance metrics across different scenarios.}
+\end{center}\vspace{1cm}
+
+\blindtext[1]
+
+\begin{center}\vspace{1cm}
+    \includegraphics[width=1.00\linewidth]{figures/Fig2.jpg}
+    \captionof{figure}{Visual representation of the output data distribution.}
+\end{center}\vspace{1cm}
+
+%----------------------------------------------------------------------------------------
+%	CONCLUSIONS BOX
+%----------------------------------------------------------------------------------------
+
+\vspace{2cm}
+\begin{tcolorbox}[width=1\linewidth,colback={conclusion},frame empty,boxsep=1cm, breakable]
+\section{Conclusions}
+\begin{itemize}
+    \item {The proposed method significantly outperforms traditional approaches in terms of accuracy.}
+    \item {Data analysis reveals critical insights into the underlying patterns of the system.}
+    \item {Future work will focus on optimizing the algorithm for real-time applications.}
+    \item {Integration with other datasets could provide further validation of these findings.}
+\end{itemize}
+\end{tcolorbox}    
+
+
+%----------------------------------------------------------------------------------------
+%	REFERENCES
+%----------------------------------------------------------------------------------------
+\singlespacing
+\small
+% Note: You need a .bib file named 'sample.bib' for this to work
+\nocite{*} 
+\bibliographystyle{plain} 
+\bibliography{sample} 
+
+%----------------------------------------------------------------------------------------
+
+\end{multicols}
+
+%----------------------------------------------------------------------------------------
+%	FOOTER
+%----------------------------------------------------------------------------------------
+\AddToShipoutPictureFG*{%
+    \AtPageLowerLeft{%
+        \begin{tikzpicture}[overlay,remember picture]
+            \node[
+                anchor=south,
+                fill=uzhblau100, 
+                text=white, 
+                text width=\paperwidth, 
+                minimum width=1.05\paperwidth, % Wider than page to avoid gaps
+                minimum height=0.3cm,  
+                inner sep=0pt, 
+                outer sep=0pt,
+                yshift=-4cm % Adjust this to move footer up/down
+            ] at (0.5\paperwidth, 0) {  
+                \vspace*{1.75cm}
+                \begin{minipage}{0.95\paperwidth}
+                    \centering
+                    \LARGE 
+                    \color{white}
+                    
+                    % Left: Author Website
+                    \begin{minipage}{0.30\linewidth}
+                        \flushleft
+                        \hspace {4cm}
+                        \href{https://www.jiveshdixit.in/}{\textbf{Jivesh Dixit (IIT Delhi)}\hspace{0.1cm}\faExternalLink*}
+                    \end{minipage}%
+                    \hfill
+                    % Center: Paper ID (Example AGU ID)
+                    \begin{minipage}{0.30\linewidth}
+                        \centering
+                        % Replace with your actual AGU Link and ID
+                        \href{https://agu.confex.com/agu/agu25/meetingapp.cgi/Paper/1957414}{%
+                            \textbf{AGU25-A51O-XXXX} \hspace{0.1cm} \faExternalLink*
+                        }
+                    \end{minipage}
+                    \hfill
+                    % Right: Email
+                    \begin{minipage}{0.30\linewidth}
+                        \flushright
+                        \href{mailto:jiveshdixit@gmail.com}{%
+                            \faEnvelope \hspace{0.2cm} jiveshdixit@gmail.com%
+                        }
+                    \end{minipage}
+                \end{minipage}
+            };
+        \end{tikzpicture}%
+    }%
+}
+
+\end{document}
